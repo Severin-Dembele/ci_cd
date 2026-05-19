@@ -132,7 +132,7 @@ export default function Home() {
               connaître notre communauté académique.
             </p>
             <Link to="/etudiants" className="btn btn-light">
-              Commencer l'Exploration
+              Commencer l'Exploratio
               <ArrowRight size={20} />
             </Link>
           </div>
