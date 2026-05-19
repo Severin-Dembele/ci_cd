@@ -15,11 +15,11 @@ interface Student {
 const STUDENTS: Student[] = [
   {
     id: 1,
-    name: 'Alice Martin',
+    name: 'Serge Waongo',
     specialization: 'Informatique',
-    bio: 'Passionnée par le développement web et l\'IA',
-    email: 'alice.martin@example.com',
-    linkedin: 'linkedin.com/in/alice-martin',
+    bio: 'Passionné par le développement web et l\'IA',
+    email: 'serge.waongo@example.com',
+    linkedin: 'linkedin.com/in/serge-waongo',
   },
   {
     id: 2,
