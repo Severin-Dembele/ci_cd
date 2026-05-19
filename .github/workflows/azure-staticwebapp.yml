@@ -3,10 +3,10 @@ name: CI/CD React App
 on:
   push:
     branches:
-      - main   # déclenchement sur push vers main
+      - main
 
 env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true   # forcer Node.js 24 dès maintenant
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   deploy:
@@ -19,7 +19,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '24'   # utiliser Node.js 24
+          node-version: '24'
 
       - name: Deploy and build on server
         uses: appleboy/ssh-action@v0.1.7
@@ -28,8 +28,14 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
+            if [ ! -d "/home/sdembele/cicd/.git" ]; then
+              rm -rf /home/sdembele/cicd
+              git clone https://github.com/Severin-Dembele/ci_cd.git /home/sdembele/cicd
+            else
+              cd /home/sdembele/cicd
+              git pull origin main
+            fi
             cd /home/sdembele/cicd
-            git pull https://github.com/Severin-Dembele/ci_cd.git main
             npm install
             npm run build
-            sudo systemctl restart nginx
+            echo ${{ secrets.SSH_PASSWORD }} | sudo -S systemctl restart nginx
