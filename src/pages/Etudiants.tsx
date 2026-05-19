@@ -15,7 +15,7 @@ interface Student {
 const STUDENTS: Student[] = [
   {
     id: 1,
-    name: 'Alice Martin',
+    name: 'BOLY Izdine ',
     specialization: 'Informatique',
     bio: 'Passionnée par le développement web et l\'IA',
     email: 'alice.martin@example.com',
@@ -60,6 +60,14 @@ const STUDENTS: Student[] = [
     bio: 'Entrepreneur en herbe, passionné par l\'innovation',
     email: 'florian.moreau@example.com',
     linkedin: 'linkedin.com/in/florian-moreau',
+  },
+    {
+    id: 8,
+    name: 'Mare Stephane Nathanaël',
+    specialization: 'Informatique',
+    bio: 'Passionnée par la finance et l\'IA',
+    email: 'maresteph06@gmail.com',
+    linkedin: 'https://www.linkedin.com/in/st%C3%A9phane-nathana%C3%ABl-mare-4a302633b/',
   },
 ];
 
