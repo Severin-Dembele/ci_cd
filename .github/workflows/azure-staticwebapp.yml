@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  NODE_VERSION: 20
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   deploy:
@@ -19,47 +19,40 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          node-version: '24'
 
-      - name: Deploy via SSH (build + sync)
-        uses: appleboy/ssh-action@v0.1.10
+      - name: Deploy and build on server
+        uses: appleboy/ssh-action@v0.1.7
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          password: ${{ secrets.SSH_PASSWORD }}
           script: |
-            set -e
-
             APP_DIR="/home/sdembele/cicd"
-            REPO="https://github.com/Severin-Dembele/ci_cd.git"
 
-            echo " Checking project directory..."
-
+            # Cloner ou mettre à jour le repo
             if [ ! -d "$APP_DIR/.git" ]; then
               rm -rf $APP_DIR
-              git clone $REPO $APP_DIR
+              git clone https://github.com/Severin-Dembele/ci_cd.git $APP_DIR
+            else
+              cd $APP_DIR
+              git pull origin main
             fi
 
             cd $APP_DIR
 
-            echo " Updating code..."
-            git reset --hard
-            git pull origin main
-
-            echo "Installing dependencies..."
-            npm ci
-
-            echo "Building project..."
+            # Installer les dépendances et builder
+            npm install
             npm run build
 
-            echo " Deploying build to Nginx folder..."
-            sudo rm -rf /var/www/utm/*
-            sudo cp -r dist/* /var/www/utm/
+            # Copier le build vers /var/www/utm
+            echo "Copie du build vers /var/www/utm..."
+            echo ${{ secrets.SSH_PASSWORD }} | sudo -S rm -rf /var/www/utm/*
+            echo ${{ secrets.SSH_PASSWORD }} | sudo -S cp -r dist/* /var/www/utm/
 
-            echo " Fixing permissions..."
-            sudo chown -R www-data:www-data /var/www/utm
-            sudo chmod -R 755 /var/www/utm
+            # Fixer les permissions
+            echo ${{ secrets.SSH_PASSWORD }} | sudo -S chown -R www-data:www-data /var/www/utm
+            echo ${{ secrets.SSH_PASSWORD }} | sudo -S chmod -R 755 /var/www/utm
 
-            echo " Reloading Nginx..."
-            sudo systemctl reload nginx
+            # Redémarrer Nginx
+            echo ${{ secrets.SSH_PASSWORD }} | sudo -S systemctl reload nginx
