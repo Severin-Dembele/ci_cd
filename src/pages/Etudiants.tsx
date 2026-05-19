@@ -61,6 +61,14 @@ const STUDENTS: Student[] = [
     email: 'florian.moreau@example.com',
     linkedin: 'linkedin.com/in/florian-moreau',
   },
+    {
+    id: 7,
+    name: 'Mare Stephane Nathanaël',
+    specialization: 'Informatique',
+    bio: 'Passionnée par la finance et l\'IA',
+    email: 'maresteph06@gmail.com',
+    linkedin: 'https://www.linkedin.com/in/st%C3%A9phane-nathana%C3%ABl-mare-4a302633b/',
+  },
 ];
 
 const SPECIALIZATIONS = ['Tous', 'Informatique', 'Gestion', 'Marketing'];
