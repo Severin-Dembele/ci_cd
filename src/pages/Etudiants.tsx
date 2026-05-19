@@ -61,13 +61,13 @@ const STUDENTS: Student[] = [
     email: 'florian.moreau@example.com',
     linkedin: 'linkedin.com/in/florian-moreau',
   },
-  {
-    id: 7,
-    name: 'YAMEOGO Armel Abdias Wendninkonté',
-    specialization: 'Cybersecurity',
-    bio: 'PCA de DarkXploiT, passionné par la sécurité informatique',
-    email: 'aabdiaswyameogo02@gmail.com',
-    linkedin: 'www.linkedin.com/in/armel-abdias-wendninkonté-yameogo-342548267',
+    {
+    id: 8,
+    name: 'Mare Stephane Nathanaël',
+    specialization: 'Informatique',
+    bio: 'Passionnée par la finance et l\'IA',
+    email: 'maresteph06@gmail.com',
+    linkedin: 'https://www.linkedin.com/in/st%C3%A9phane-nathana%C3%ABl-mare-4a302633b/',
   },
 ];
 
