@@ -13,8 +13,13 @@ export default function Home() {
             {/* Left Content */}
             <div className="hero-content animate-slide-in-left">
               <div className="hero-badge">Promotion 2024-2025</div>
-              <h1>Bienvenue à la <span className="text-primary">Promotion</span></h1>
-              <p>Découvrez nos étudiants talentueux, nos projets innovants et notre communauté dynamique. Une promotion d'exception.</p>
+              <h1>
+                Bienvenue à la <span className="text-primary">Promotion</span>
+              </h1>
+              <p>
+                Découvrez nos étudiants talentueux, nos projets innovants et
+                notre communauté dynamique. Une promotion d'exception.
+              </p>
 
               {/* CTA Buttons */}
               <div className="hero-buttons">
@@ -49,7 +54,9 @@ export default function Home() {
               <div className="hero-visual-inner">
                 <Users size={40} />
                 <p>Une Communauté Exceptionnelle</p>
-                <span>Rejoignez nos étudiants dans une aventure académique unique</span>
+                <span>
+                  Rejoignez nos étudiants dans une aventure académique unique
+                </span>
               </div>
             </div>
           </div>
@@ -61,7 +68,9 @@ export default function Home() {
         <div className="container">
           <div className="features-header">
             <h2>Explorez Notre Promotion</h2>
-            <p>Découvrez les différentes facettes de notre communauté académique</p>
+            <p>
+              Découvrez les différentes facettes de notre communauté académique
+            </p>
           </div>
 
           <div className="features-grid">
@@ -71,7 +80,10 @@ export default function Home() {
                 <Users size={24} />
               </div>
               <h3>Nos Étudiants</h3>
-              <p>Rencontrez les 150+ étudiants talentueux de notre promotion avec leurs profils détaillés.</p>
+              <p>
+                Rencontrez les 150+ étudiants talentueux de notre promotion avec
+                leurs profils détaillés.
+              </p>
               <span className="feature-link">
                 Découvrir <ArrowRight size={16} />
               </span>
@@ -83,7 +95,10 @@ export default function Home() {
                 <Image size={24} />
               </div>
               <h3>Galerie Photos</h3>
-              <p>Parcourez nos plus beaux moments et événements capturés au fil de l'année.</p>
+              <p>
+                Parcourez nos plus beaux moments et événements capturés au fil
+                de l'année.
+              </p>
               <span className="feature-link">
                 Voir les photos <ArrowRight size={16} />
               </span>
@@ -95,7 +110,10 @@ export default function Home() {
                 <Mail size={24} />
               </div>
               <h3>Nous Contacter</h3>
-              <p>Vous avez des questions ? Contactez-nous directement pour plus d'informations.</p>
+              <p>
+                Vous avez des questions ? Contactez-nous directement pour plus
+                d'informations.
+              </p>
               <span className="feature-link">
                 Envoyer un message <ArrowRight size={16} />
               </span>
@@ -109,7 +127,10 @@ export default function Home() {
         <div className="container">
           <div className="cta-content">
             <h2>Prêt à Découvrir Notre Promotion ?</h2>
-            <p>Explorez nos profils, nos projets et nos événements pour mieux connaître notre communauté académique.</p>
+            <p>
+              Explorez nos profils, nos projets et nos événements pour mieux
+              connaître notre communauté académique.
+            </p>
             <Link to="/etudiants" className="btn btn-light">
               Commencer l'Exploration
               <ArrowRight size={20} />
@@ -117,6 +138,12 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <footer className="footer">
+        <div className="container">
+          <p className="footer-text">Made by UTM team</p>
+        </div>
+      </footer>
     </Layout>
   );
 }

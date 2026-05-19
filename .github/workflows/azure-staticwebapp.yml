@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  NODE_VERSION: 20
 
 jobs:
   deploy:
@@ -19,23 +19,47 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '24'
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
 
-      - name: Deploy and build on server
-        uses: appleboy/ssh-action@v0.1.7
+      - name: Deploy via SSH (build + sync)
+        uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
-          password: ${{ secrets.SSH_PASSWORD }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            if [ ! -d "/home/sdembele/cicd/.git" ]; then
-              rm -rf /home/sdembele/cicd
-              git clone https://github.com/Severin-Dembele/ci_cd.git /home/sdembele/cicd
-            else
-              cd /home/sdembele/cicd
-              git pull origin main
+            set -e
+
+            APP_DIR="/home/sdembele/cicd"
+            REPO="https://github.com/Severin-Dembele/ci_cd.git"
+
+            echo " Checking project directory..."
+
+            if [ ! -d "$APP_DIR/.git" ]; then
+              rm -rf $APP_DIR
+              git clone $REPO $APP_DIR
             fi
-            cd /home/sdembele/cicd
-            npm install
+
+            cd $APP_DIR
+
+            echo " Updating code..."
+            git reset --hard
+            git pull origin main
+
+            echo "Installing dependencies..."
+            npm ci
+
+            echo "Building project..."
             npm run build
-            echo ${{ secrets.SSH_PASSWORD }} | sudo -S systemctl restart nginx
+
+            echo " Deploying build to Nginx folder..."
+            sudo rm -rf /var/www/utm/*
+            sudo cp -r dist/* /var/www/utm/
+
+            echo " Fixing permissions..."
+            sudo chown -R www-data:www-data /var/www/utm
+            sudo chmod -R 755 /var/www/utm
+
+            echo " Reloading Nginx..."
+            sudo systemctl reload nginx

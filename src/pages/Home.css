@@ -326,3 +326,17 @@
     font-size: 2rem;
   }
 }
+
+
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #f8f8f8;
+  margin-top: 40px;
+}
+
+.footer-text {
+  font-size: 14px;
+  color: #555;
+}
