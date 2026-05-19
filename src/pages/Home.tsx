@@ -139,11 +139,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="footer">
-        <div className="container">
-          <p className="footer-text">Made by UTM team</p>
-        </div>
-      </footer>
+    
     </Layout>
   );
 }
