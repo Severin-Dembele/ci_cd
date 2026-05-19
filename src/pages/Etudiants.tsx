@@ -69,6 +69,14 @@ const STUDENTS: Student[] = [
     email: 'maresteph06@gmail.com',
     linkedin: 'https://www.linkedin.com/in/st%C3%A9phane-nathana%C3%ABl-mare-4a302633b/',
   },
+  ,{
+    id: 9,
+    name: 'Distelle Bouda',
+    specialization: 'Informatique',
+    bio: 'Ingenieur en cybersécurité , passionnée par Ouria',
+    email: 'distellewab@gmail.com',
+    linkedin: 'linkedin.com/distelle-bouda',
+  },
 ];
 
 const SPECIALIZATIONS = ['Tous', 'Informatique', 'Gestion', 'Marketing'];
