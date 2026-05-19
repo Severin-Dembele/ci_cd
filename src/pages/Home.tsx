@@ -132,18 +132,14 @@ export default function Home() {
               connaître notre communauté académique.
             </p>
             <Link to="/etudiants" className="btn btn-light">
-              Commencer l'Exploration
+              Commencer l'Exploratio
               <ArrowRight size={20} />
             </Link>
           </div>
         </div>
       </section>
 
-      <footer className="footer">
-        <div className="container">
-          <p className="footer-text">Made by UTM team</p>
-        </div>
-      </footer>
+    
     </Layout>
   );
 }
